@@ -1,0 +1,34 @@
+Server
+	giving our ext data to populate the whatCouldYouDo view
+	how?
+	we will do webscraping beforehand to gathr up data. 
+	ext will then request this data.
+
+	//public
+	coolThings[] getCoolThings(int minDuration, int maxDuration)
+	coolThings[] getCoolThings(int minDuration, int maxDuration, int typeID)
+
+	//private
+	* scrape TED
+	* scrape NYT
+	generate potential calorie loss by running X minutes
+	(similar other activities) swimming, biking
+	read a book with suggestions
+
+	//optional
+	create login system so see stats
+	cookie isValidUser(user, pass)
+
+
+	//file layout
+	server.js
+	-- handle API requests 
+
+	dataHandler.js
+	-- responsible for all database interactions
+
+	TEDScraper, NYTScraper, ...Scraper
+	-- responsible for getting content from a given website, 
+	-- and calling proper function to store data in DB
+
+	

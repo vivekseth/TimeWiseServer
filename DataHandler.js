@@ -1,10 +1,10 @@
 
-var mongodb = require('mongodb');
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/TimeWise');
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function callback () {});
+
 var listingSchema = mongoose.Schema({
 	"title" : String,
 	"description" : String,
@@ -14,7 +14,6 @@ var listingSchema = mongoose.Schema({
 	"duration" : Number
 });
 var Listing = mongoose.model('Listing', listingSchema);
-
 function saveContentListing(title, description, sourceID, imageURL, contentURL, duration) {
 	var data = {
 		"title" : title,
@@ -33,12 +32,16 @@ function saveContentListing(title, description, sourceID, imageURL, contentURL, 
 		mongoose.connection.close()
 	});
 };
+function getListingsByDuration(low, high, callback) {
+	Listing.find({duration:{$gte: low, $lte: high}}, function(err, docs){
+		if (err) {console.log(err)}
+		else callback(docs);
+	})
+}
+function getAllListings(callback) {
+	Listing.find(function (err, docs) {
+	  if (err) {console.log(err)}
+	  else callback(docs);
+	})
+}
 
-saveContentListing("1232", "1232", "1232", "1232", "1232", 3);
-
-Listing.find(function (err, kittens) {
-  if (err) {}// TODO handle err
-  console.log(kittens)
-})
-
-//mongoose.connection.close()
