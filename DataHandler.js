@@ -44,4 +44,3 @@ function getAllListings(callback) {
 	  else callback(docs);
 	})
 }
-
