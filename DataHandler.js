@@ -44,3 +44,6 @@ function getAllListings(callback) {
 	  else callback(docs);
 	})
 }
+
+
+module.exports.saveContentListing = saveContentListing;
